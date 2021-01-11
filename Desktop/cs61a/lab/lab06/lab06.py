@@ -49,7 +49,22 @@ def make_fib():
     >>> check(this_file, 'make_fib', ['List'])
     True
     """
-    "*** YOUR CODE HERE ***"
+    pre,cur = 0,1
+    count = 0
+    def m_f():
+        nonlocal pre, cur
+        nonlocal count
+        if count == 0:
+            count += 1
+            return pre
+        elif count == 1:
+            count += 1
+            return cur
+        else:
+            count += 1
+            cur, pre = cur + pre, cur
+            return cur
+    return m_f
 
 
 def insert_items(lst, entry, elem):
@@ -68,4 +83,24 @@ def insert_items(lst, entry, elem):
     >>> large_lst3 is large_lst
     True
     """
-    "*** YOUR CODE HERE ***"
+    #needs to be a mutation list
+    #get a iterator/generator to pass out the position of the match int
+    #
+    contents = lst
+    def mut_list(message, target_position,value=elem):
+        nonlocal contents
+        if message == 'insert':
+            contents = contents.insert(contents.index(target_position)+1,value)
+
+
+    return mut_list
+
+
+#    if type(lst) == list:
+#        if entry in lst:
+#            [lst.insert(lst.index(entry)+1,elem)]
+#            return lst[:lst.index(entry)+2] + insert_items(lst[lst.index(entry)+2:], entry,elem)
+#        else:
+#            return lst[:]
+#    else:
+#        return []
